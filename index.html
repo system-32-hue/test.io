@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Conversor para Binário</title>
+<style>
+body{
+    background:#181818;
+    color:white;
+    font-family:Arial;
+    margin:20px;
+}
+textarea{
+    width:100%;
+    height:220px;
+    background:#252525;
+    color:#00ff66;
+    border:none;
+    padding:10px;
+    resize:vertical;
+    font-family:Consolas,monospace;
+}
+button{
+    margin-top:10px;
+    padding:10px 20px;
+    background:#00aa55;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+button:hover{
+    background:#008844;
+}
+</style>
+</head>
+<body>
+
+<h1>Conversor Código ⇄ Binário</h1>
+
+<textarea id="entrada" placeholder="Digite um código ou texto..."></textarea>
+
+<br>
+
+<button onclick="textoParaBinario()">Texto → Binário</button>
+<button onclick="binarioParaTexto()">Binário → Texto</button>
+
+<h2>Resultado</h2>
+
+<textarea id="saida" readonly></textarea>
+
+<script>
+
+function textoParaBinario(){
+
+    let texto=document.getElementById("entrada").value;
+
+    let binario="";
+
+    for(let i=0;i<texto.length;i++){
+
+        binario+=texto.charCodeAt(i).toString(2).padStart(8,"0")+" ";
+
+    }
+
+    document.getElementById("saida").value=binario.trim();
+
+}
+
+function binarioParaTexto(){
+
+    let bin=document.getElementById("entrada").value.trim();
+
+    let partes=bin.split(/\s+/);
+
+    let texto="";
+
+    for(let b of partes){
+
+        if(b!=""){
+            texto+=String.fromCharCode(parseInt(b,2));
+        }
+
+    }
+
+    document.getElementById("saida").value=texto;
+
+}
+
+</script>
+
+</body>
+</html>
